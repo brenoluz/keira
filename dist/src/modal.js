@@ -1,4 +1,4 @@
-import View from './view';
+import View, { ce } from './view.js';
 let local_document = window.document;
 export default class Modal extends View {
     constructor(C) {
@@ -13,15 +13,16 @@ export default class Modal extends View {
     set_title(title) {
         this.titleText = title;
     }
-    render() {
+    async render() {
         this.container = ce('div', 'modal fade show');
         this.container.onclick = (e) => {
-            if (!!this.backdropClose && e.target == e.currentTarget)
+            if (!!this.backdropClose && e.target == e.currentTarget) {
                 this.remove();
+            }
         };
-        let dialog = ce('div', 'modal-dialog modal-dialog-scrollable');
+        const dialog = ce('div', 'modal-dialog modal-dialog-scrollable');
         this.container.append(dialog);
-        let content = ce('div', 'modal-content');
+        const content = ce('div', 'modal-content');
         dialog.append(content);
         this.header = ce('div', 'modal-header');
         content.append(this.header);
@@ -29,39 +30,48 @@ export default class Modal extends View {
         content.append(this.body);
         this.footer = ce('div', 'modal-footer');
         content.append(this.footer);
-        return this.make().then(() => {
-            if (!!this.titleText) {
-                let title = ce('h5', 'modal-title');
+        await this.make();
+        if (!!this.titleText) {
+            const title = ce('h5', 'modal-title');
+            if (this.header) {
                 this.header.append(title);
-                title.innerText = this.titleText;
             }
-            let button = ce('button', 'close');
+            title.innerText = this.titleText;
+        }
+        const button = ce('button', 'close');
+        if (this.header) {
             this.header.append(button);
-            button.onclick = this.remove.bind(this);
-            let span = ce('span');
-            button.append(span);
-            span.style.fontSiza = '16px';
-            span.innerText = 'x';
-            this.show();
-            return Promise.resolve();
-        });
+        }
+        button.onclick = this.remove.bind(this);
+        const span = ce('span');
+        button.append(span);
+        span.style.fontSize = '16px'; // Fixed typo: was fontSiza
+        span.innerText = 'x';
+        this.show();
+        return Promise.resolve(this.container);
     }
     show() {
-        let container = Modal.get_document().body;
+        const container = Modal.get_document().body;
         console.log('show', container);
         this.opacity = ce('div', 'modal-backdrop fade show');
         container.append(this.container);
-        container.append(this.opacity);
+        if (this.opacity) {
+            container.append(this.opacity);
+        }
         this.container.style.display = 'block';
     }
     hide() {
-        this.opacity.remove();
+        if (this.opacity) {
+            this.opacity.remove();
+        }
         this.container.style.display = 'none';
     }
     remove() {
         console.warn('MODAL REMOVE');
         super.remove();
-        this.opacity.remove();
+        if (this.opacity) {
+            this.opacity.remove();
+        }
     }
     static set_document(document) {
         local_document = document;

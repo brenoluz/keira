@@ -1,5 +1,5 @@
-import Alert from './alert';
+import Alert from './alert.js';
 export default {
-    'Alert': Alert,
+    Alert: Alert,
 };
 //# sourceMappingURL=index.js.map

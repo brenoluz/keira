@@ -88,8 +88,8 @@
         "Typecheck passes"
       ],
       "priority": 5,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted Modal and Alert to TypeScript, fixed fontSiza typo, zero any types"
     },
     {
       "id": "US-006",

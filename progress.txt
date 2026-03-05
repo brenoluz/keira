@@ -102,6 +102,32 @@ This file tracks progress through the user stories in prd.json.
 - Use tuple types like [string, string] for list arrays with known structure
 - Optional tuple elements like [string, string, string?] for optional help text
 - When base class method returns different types in subclasses, use broader type (HTMLElement) with type guards
+
+---
+
+## 2026-03-05 09:41 - US-005
+- Converted Modal components to TypeScript:
+  - Modal with typed properties (titleText, header, body, footer, opacity, backdropClose)
+  - Typed methods: set_title, show, hide, remove
+  - Static methods set_document and get_document properly typed
+  - Fixed bug: style.fontSiza → style.fontSize (line 64 in original)
+  - Alert class with typed message property and set_message method
+  - Modal index export properly typed
+- Zero any types in modal components
+- Verified typecheck and build pass
+
+**Files changed:**
+- src/modal.ts (created from modal.js)
+- src/modal/alert.ts (created from alert.js)
+- src/modal/index.ts (created from index.js)
+- Old .js files deleted
+
+**Learnings for future iterations:**
+- Fixed typo in original code: fontSiza → fontSize
+- Use ExtendedElement type consistently for ce() created elements
+- Static methods for document management allow testing with mock documents
+
+---
 - Use 'property' in object type guards for accessing element-specific properties
 
 ---

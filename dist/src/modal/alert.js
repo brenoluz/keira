@@ -1,7 +1,8 @@
-import Modal from '../modal';
-export default class extends Modal {
+import Modal from '../modal.js';
+import { ce } from '../view.js';
+export default class Alert extends Modal {
     constructor(msg) {
-        super();
+        super(null);
         this.message = msg;
     }
     set_message(msg) {
@@ -9,18 +10,24 @@ export default class extends Modal {
     }
     render() {
         return super.render().then(() => {
-            return new Promise((resolve, reject) => {
-                this.header.innerHTML = '';
-                let msg = ce('h5');
-                this.body.append(msg);
+            return new Promise((resolve, _reject) => {
+                if (this.header) {
+                    this.header.innerHTML = '';
+                }
+                const msg = ce('h5');
+                if (this.body) {
+                    this.body.append(msg);
+                }
                 msg.innerText = this.message;
-                let ok = ce('button', 'btn btn-secondary');
-                ok.innerText = _('vdok').text;
+                const ok = ce('button', 'btn btn-secondary');
+                ok.innerText = typeof _ !== 'undefined' ? _('vdok').text : 'OK';
                 ok.onclick = () => {
-                    resolve(false);
                     this.remove();
                 };
-                this.footer.append(ok);
+                if (this.footer) {
+                    this.footer.append(ok);
+                }
+                resolve(this.container);
             });
         });
     }
