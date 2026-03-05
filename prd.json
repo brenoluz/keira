@@ -118,8 +118,8 @@
         "Typecheck passes"
       ],
       "priority": 7,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted Event system to TypeScript, zero any types"
     },
     {
       "id": "US-008",
@@ -133,8 +133,8 @@
         "Typecheck passes"
       ],
       "priority": 8,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted Back system to TypeScript with typed constants"
     },
     {
       "id": "US-009",
@@ -148,8 +148,8 @@
         "Typecheck passes"
       ],
       "priority": 9,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted ValidatorNotNull to TypeScript"
     },
     {
       "id": "US-010",
@@ -163,8 +163,8 @@
         "Typecheck passes"
       ],
       "priority": 10,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted tools.ts and code.ts utilities to TypeScript, fixed typo"
     },
     {
       "id": "US-011",
@@ -178,8 +178,8 @@
         "Typecheck passes"
       ],
       "priority": 11,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Converted Loading component, fixed container.append bug"
     },
     {
       "id": "US-012",

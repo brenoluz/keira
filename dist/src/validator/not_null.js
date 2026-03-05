@@ -1,6 +1,6 @@
-import Base from './base';
-export default class extends Base {
-    is_valid(value, extra) {
+import ValidatorBase from './base.js';
+export default class ValidatorNotNull extends ValidatorBase {
+    is_valid(value, _extra) {
         if (!value || value == '') {
             return Promise.resolve(false);
         }

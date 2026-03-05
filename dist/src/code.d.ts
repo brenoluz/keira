@@ -1,7 +1,7 @@
-declare namespace _default {
-    let TIMEOUT: string;
-    let INVALID_FORM: string;
-    let DISCONNECTED: string;
-}
+declare const _default: {
+    TIMEOUT: string;
+    INVALID_FORM: string;
+    DISCONNECTED: string;
+};
 export default _default;
 //# sourceMappingURL=code.d.ts.map

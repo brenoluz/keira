@@ -1,1 +1,1 @@
-{"version":3,"file":"loading.d.ts","sourceRoot":"","sources":["../../../src/component/loading.js"],"names":[],"mappings":"AAEA;IAII,eAAoD;IAGtD,sBAMC;CACF"}
+{"version":3,"file":"loading.d.ts","sourceRoot":"","sources":["../../../src/component/loading.ts"],"names":[],"mappings":"AAAA,OAAO,IAAY,MAAM,YAAY,CAAC;AAEtC,MAAM,CAAC,OAAO,OAAO,OAAQ,SAAQ,IAAI;;IAM9B,IAAI,IAAI,OAAO,CAAC,IAAI,CAAC;CAK/B"}

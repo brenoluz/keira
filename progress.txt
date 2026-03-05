@@ -145,6 +145,37 @@ This file tracks progress through the user stories in prd.json.
 
 ---
 
+## 2026-03-05 09:50 - US-007 to US-011
+- **US-007**: Converted Event singleton with typed listeners, emit/on/remove methods
+- **US-008**: Converted Back singleton with typed list, default, and priority constants (MENU, OVERRIDE, MODAL, DIALOG)
+- **US-009**: Converted ValidatorNotNull with typed is_valid method
+- **US-010**: Converted utilities:
+  - tools.ts with typed makeId, ellipsisText, uuid functions
+  - code.ts with typed constants (fixed typo: disonnected → disconnected)
+- **US-011**: Converted Loading component with typed make method
+  - Fixed bug: this.container.container(span) → this.container.append(span)
+- Zero any types across all components
+- Verified typecheck and build pass
+
+**Files changed:**
+- src/event.ts (created from event.js)
+- src/back.ts (created from back.js)
+- src/tools.ts (created from tools.js)
+- src/code.ts (created from code.js)
+- src/validator/not_null.ts (created from not_null.js)
+- src/validator/index.ts (created from index.js)
+- src/component/loading.ts (created from loading.js)
+- Old .js files deleted
+
+**Learnings for future iterations:**
+- Singleton pattern works well with TypeScript using `new class` pattern
+- Fixed two bugs during conversion: disonnected typo and container.append bug
+- Use readonly for constants that shouldn't change
+
+---
+
+---
+
 ---
 - Use 'property' in object type guards for accessing element-specific properties
 

@@ -1,11 +1,11 @@
-export default new class {
+export default new class Back {
     constructor() {
-        this.list = {};
-        this.default = null;
         this.MENU = 8;
         this.OVERRIDE = 6;
         this.MODAL = 4;
         this.DIALOG = 3;
+        this.list = {};
+        this.default = null;
     }
     add(priority, cb) {
         this.list[priority] = cb;
@@ -23,15 +23,15 @@ export default new class {
         this.add(this.OVERRIDE, cb);
     }
     back() {
-        var call = this.default;
-        //9 is max priority
-        for (var i = 0; i < 10; i++) {
+        let call = this.default;
+        // 9 is max priority
+        for (let i = 0; i < 10; i++) {
             if (!!this.list[i]) {
                 call = this.list[i];
                 break;
             }
         }
-        return call();
+        return call ? call() : undefined;
     }
-};
+}();
 //# sourceMappingURL=back.js.map

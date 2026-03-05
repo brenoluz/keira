@@ -1,13 +1,13 @@
-export default new class {
+export default new class Event {
     constructor() {
         this.listeners = {};
     }
     emit(name, data) {
         if (!this.listeners.hasOwnProperty(name)) {
-            return Promise.resolve();
+            return Promise.resolve([]);
         }
-        let promises = [];
-        for (let func of this.listeners[name]) {
+        const promises = [];
+        for (const func of this.listeners[name]) {
             promises.push(func(data));
         }
         return Promise.all(promises);
@@ -28,13 +28,13 @@ export default new class {
         if (!this.listeners.hasOwnProperty(name)) {
             return;
         }
-        let listeners = this.listeners[name];
-        for (let i in listeners) {
-            let even = listeners[i];
-            if (even === func) {
+        const listeners = this.listeners[name];
+        for (let i = 0; i < listeners.length; i++) {
+            if (listeners[i] === func) {
                 this.listeners[name].splice(i, 1);
+                break;
             }
         }
     }
-};
+}();
 //# sourceMappingURL=event.js.map
