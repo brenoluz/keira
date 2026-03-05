@@ -197,6 +197,38 @@ This file tracks progress through the user stories in prd.json.
 
 ---
 
+## 2026-03-05 09:57 - US-013
+- Created comprehensive tests for Controller (3 tests):
+  - error method logs to console
+  - handles unknown error types
+  - handles null/undefined errors
+- Created comprehensive tests for View (14 tests):
+  - ce function with tag, className, attributes
+  - ce function with append, text, html methods
+  - View constructor, make, toString, remove, render methods
+- Created comprehensive tests for Form (11 tests):
+  - initialization, add elements, get_elements
+  - add_validator, get_values, set_values
+  - is_valid with valid/invalid data, extra context
+  - multiple validators
+- All tests use strict typing (no any)
+- Tests cover edge cases and error conditions
+- All 28 tests pass with npm test
+
+**Files changed:**
+- tests/controller.test.ts (comprehensive tests)
+- tests/view.test.ts (comprehensive tests)
+- tests/form.test.ts (comprehensive tests)
+
+**Learnings for future iterations:**
+- Use vi.spyOn() for mocking console methods
+- Input components need make() called before DOM operations
+- set_value on inputs may need make() to be called internally
+
+---
+
+---
+
 ---
 
 ---
