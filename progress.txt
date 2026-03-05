@@ -128,6 +128,24 @@ This file tracks progress through the user stories in prd.json.
 - Static methods for document management allow testing with mock documents
 
 ---
+
+## 2026-03-05 09:45 - US-006
+- Converted Dropdown component to TypeScript:
+  - Typed properties: _button, _itens, menu, opacity, menu_show
+  - Typed methods: set_button, set_label, make_button, make_item, toggle, show, hide
+  - Zero any types
+  - Verified typecheck and build pass
+
+**Files changed:**
+- src/dropdown.ts (created from dropdown.js)
+- Old .js file deleted
+
+**Learnings for future iterations:**
+- Dropdown uses overlay opacity element for click-outside-to-close behavior
+
+---
+
+---
 - Use 'property' in object type guards for accessing element-specific properties
 
 ---

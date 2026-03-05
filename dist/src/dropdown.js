@@ -1,9 +1,10 @@
-import View from './view';
-export default class extends View {
+import View, { ce } from './view.js';
+export default class Dropdown extends View {
     constructor() {
-        super();
+        super(null);
         this._button = null;
         this._itens = [];
+        this._label = undefined;
         this.menu = null;
         this.opacity = null;
         this.menu_show = false;
@@ -23,13 +24,13 @@ export default class extends View {
         return Promise.resolve();
     }
     make_button(text, cls) {
-        let button = ce('button', 'btn');
+        const button = ce('button', 'btn');
         button.type = 'button';
         if (!!text)
             button.innerText = text;
         if (!!cls)
             button.classList.add(cls);
-        button.onclick = event => {
+        button.onclick = () => {
             if (!!this.menu) {
                 this.toggle();
             }
@@ -37,12 +38,12 @@ export default class extends View {
         return button;
     }
     make_and_set_button(text, cls) {
-        let button = this.make_button(text, cls);
+        const button = this.make_button(text, cls);
         this.set_button(button);
         return button;
     }
     make_item(label) {
-        let button = ce('button', 'dropdown-item');
+        const button = ce('button', 'dropdown-item');
         button.type = 'button';
         if (!!label)
             button.innerText = label;
@@ -52,7 +53,7 @@ export default class extends View {
         this._itens.push(item);
     }
     make_and_add_item(label) {
-        let item = this.make_item(label);
+        const item = this.make_item(label);
         this.add(item);
         return item;
     }
@@ -79,7 +80,9 @@ export default class extends View {
         }
     }
     hide() {
-        this.opacity.remove();
+        if (this.opacity) {
+            this.opacity.remove();
+        }
         this.menu_show = false;
         if (!!this.menu) {
             this.menu.classList.remove('show');
@@ -87,14 +90,18 @@ export default class extends View {
     }
     make_itens() {
         this.menu = ce('div', 'dropdown-menu');
-        for (let item of this._itens) {
-            this.menu.append(item);
+        for (const item of this._itens) {
+            if (this.menu) {
+                this.menu.append(item);
+            }
         }
         return this.menu;
     }
     remove() {
         super.remove();
-        this.opacity.remove();
+        if (this.opacity) {
+            this.opacity.remove();
+        }
     }
 }
 //# sourceMappingURL=dropdown.js.map
