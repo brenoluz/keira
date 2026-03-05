@@ -1,7 +1,8 @@
-export default class _default {
-    constructor(name: any);
+import InputBase from './base.js';
+export default class InputDate extends InputBase {
     format: string | null;
-    make_input(name: any): any;
+    constructor(name: string);
+    make_input(name: string): HTMLInputElement;
     get_format(): string;
 }
 //# sourceMappingURL=date.d.ts.map

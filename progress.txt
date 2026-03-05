@@ -68,6 +68,43 @@ This file tracks progress through the user stories in prd.json.
 **Learnings for future iterations:**
 - ESM with NodeNext requires explicit .js extensions in imports
 - Use `as unknown as Type` for DOM element type casting when ce() returns ExtendedElement
+
+---
+
+## 2026-03-05 09:36 - US-004
+- Converted all input components to TypeScript:
+  - InputText with typed make_input returning HTMLInputElement
+  - InputSelect with typed list: SelectOption[], onchange callback
+  - InputRadio with typed list: RadioOption[], tooltip support
+  - InputRadioButton with typed list: RadioButtonOption[]
+  - InputTextarea with typed rows() and maxlength() methods
+  - InputHidden with proper typing
+  - InputDate with typed format: string | null, get_format()
+- Updated src/input.ts to re-export all input types with InputDate
+- Fixed base class to use HTMLElement | null for input property to support different element types
+- Added type guards for accessing value property on different input element types
+- Zero any types in input components
+- Verified typecheck and build pass
+
+**Files changed:**
+- src/input/text.ts (created from text.js)
+- src/input/select.ts (created from select.js)
+- src/input/radio.ts (created from radio.js)
+- src/input/radio_button.ts (created from radio_button.js)
+- src/input/textarea.ts (created from textarea.js)
+- src/input/hidden.ts (created from hidden.js)
+- src/input/date.ts (created from date.js)
+- src/input.ts (updated to export InputDate)
+- src/input/base.ts (updated input property type to HTMLElement | null)
+- Old .js files deleted
+
+**Learnings for future iterations:**
+- Use tuple types like [string, string] for list arrays with known structure
+- Optional tuple elements like [string, string, string?] for optional help text
+- When base class method returns different types in subclasses, use broader type (HTMLElement) with type guards
+- Use 'property' in object type guards for accessing element-specific properties
+
+---
 - ExtendedElement interface extends HTMLElement with custom methods (append, text, html)
 - Use override modifier for methods that override base class methods
 - Type-only imports (import type) help avoid circular dependencies

@@ -1,5 +1,5 @@
-import Base from './base';
-export default class extends Base {
+import InputBase from './base.js';
+export default class InputTextarea extends InputBase {
     constructor(name) {
         super(name);
         this._rows = 2;
@@ -12,14 +12,15 @@ export default class extends Base {
         this._maxlength = length;
     }
     make_input(name) {
-        let input = ce('textarea', 'w-100');
-        input.rows = this._rows;
-        input.maxlength = this._maxlength;
-        input.name = name;
-        if (!!this.value) {
-            input.innerText = this.value;
+        const textareaEl = document.createElement('textarea');
+        textareaEl.className = 'w-100';
+        textareaEl.rows = this._rows;
+        textareaEl.maxLength = this._maxlength;
+        textareaEl.name = name;
+        if (!!this.value && typeof this.value === 'string') {
+            textareaEl.innerText = this.value;
         }
-        return input;
+        return textareaEl;
     }
 }
 //# sourceMappingURL=textarea.js.map

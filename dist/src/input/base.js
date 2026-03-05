@@ -36,7 +36,7 @@ export default class InputBase extends View {
         return this.name;
     }
     get_value() {
-        if (this.input) {
+        if (this.input && 'value' in this.input) {
             this.value = this.input.value;
         }
         return this.value;
@@ -48,7 +48,7 @@ export default class InputBase extends View {
         this.label_text = text;
     }
     focus() {
-        if (this.input) {
+        if (this.input && 'focus' in this.input) {
             this.input.focus();
         }
     }
@@ -144,15 +144,8 @@ export default class InputBase extends View {
         label.innerText = !!text ? text : '';
         return label;
     }
-    make_input(name) {
+    make_input(_name) {
         const input = ce('input', 'form-control');
-        input.name = name;
-        if (!!this.value && typeof this.value === 'string') {
-            input.value = this.value;
-        }
-        if (!this.editable) {
-            input.disabled = true;
-        }
         return input;
     }
     make_help(text) {

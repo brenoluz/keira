@@ -1,11 +1,13 @@
-export default class _default {
-    constructor(name: any);
-    list: any[];
-    get_value(): any;
-    onchange(object: any, value: any): void;
-    make_input(): any;
-    value: any;
-    add(key: any, label: any): void;
-    display(): any;
+import InputBase from './base.js';
+type SelectOption = [string, string];
+export default class InputSelect extends InputBase {
+    list: SelectOption[];
+    constructor(name: string);
+    get_value(): unknown;
+    onchange(_object: InputSelect, _value: unknown): void;
+    make_input(): HTMLSelectElement;
+    add(key: string, label: string): void;
+    display(): string;
 }
+export {};
 //# sourceMappingURL=select.d.ts.map

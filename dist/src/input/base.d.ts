@@ -4,7 +4,7 @@ export default class InputBase extends View {
     name: string;
     label: Element | null;
     help: Element | null;
-    input: HTMLInputElement | null;
+    input: HTMLElement | null;
     value: unknown;
     editable: boolean;
     label_text: string | null;
@@ -32,7 +32,7 @@ export default class InputBase extends View {
     make(): Promise<void>;
     make_error(): ExtendedElement;
     make_label(text: string): HTMLElement;
-    make_input(name: string): HTMLInputElement;
+    make_input(_name: string): HTMLElement;
     make_help(text: string): HTMLElement;
     remove_children(): Promise<void>;
     append(child: InputBase | Element): void;

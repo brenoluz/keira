@@ -1,29 +1,31 @@
-import Base from './base';
-export default class extends Base {
+import InputBase from './base.js';
+export default class InputRadioButton extends InputBase {
     constructor(name) {
         super(name);
         this.list = [];
     }
-    onchange(object, value) {
-        /* method for overwrite */
-    }
     get_value() {
         return this.value;
     }
+    onchange(_object, _value) {
+        // method for override
+    }
     make_input() {
-        let inputs = ce('div', 'btn-group btn-group-toggle d-block');
-        inputs.dataTaggle = 'buttons';
-        for (let item of this.list) {
-            let key = item[0];
-            let text = item[1];
-            let label = ce('label', 'btn btn-secondary');
+        const inputs = document.createElement('div');
+        inputs.className = 'btn-group btn-group-toggle d-block';
+        inputs.setAttribute('data-toggle', 'buttons');
+        for (const item of this.list) {
+            const key = item[0];
+            const text = item[1];
+            const label = document.createElement('label');
+            label.className = 'btn btn-secondary';
             inputs.append(label);
-            let input = ce('input');
+            const input = document.createElement('input');
             input.type = 'radio';
             input.name = this.name;
             input.value = key;
-            input.onclick = event => {
-                let last_value = this.value;
+            input.onclick = () => {
+                const last_value = this.value;
                 this.value = input.value;
                 if (last_value != this.value) {
                     this.onchange(this, this.value);
@@ -31,13 +33,13 @@ export default class extends Base {
             };
             label.append(input);
             if (!this.editable) {
-                input.disabled = 'disabled';
+                input.disabled = true;
             }
             if (this.value == key) {
-                input.checked = 'checked';
+                input.checked = true;
                 label.classList.add('active');
             }
-            let span = ce('span');
+            const span = document.createElement('span');
             span.innerText = text;
             label.append(span);
         }

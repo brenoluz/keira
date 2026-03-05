@@ -1,9 +1,10 @@
-export default class _default {
-    constructor(name: any);
-    _rows: number;
-    _maxlength: number;
-    rows(length: any): void;
-    maxlength(length: any): void;
-    make_input(name: any): any;
+import InputBase from './base.js';
+export default class InputTextarea extends InputBase {
+    private _rows;
+    private _maxlength;
+    constructor(name: string);
+    rows(length: number): void;
+    maxlength(length: number): void;
+    make_input(name: string): HTMLTextAreaElement;
 }
 //# sourceMappingURL=textarea.d.ts.map

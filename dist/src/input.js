@@ -1,8 +1,9 @@
-export { default as InputText } from './input/text';
-export { default as InputBase } from './input/base';
-export { default as InputHidden } from './input/hidden';
-export { default as InputRadio } from './input/radio';
-export { default as InputRadioButton } from './input/radio_button';
-export { default as InputTextarea } from './input/textarea';
-export { default as InputSelect } from './input/select';
+export { default as InputText } from './input/text.js';
+export { default as InputBase } from './input/base.js';
+export { default as InputHidden } from './input/hidden.js';
+export { default as InputRadio } from './input/radio.js';
+export { default as InputRadioButton } from './input/radio_button.js';
+export { default as InputTextarea } from './input/textarea.js';
+export { default as InputSelect } from './input/select.js';
+export { default as InputDate } from './input/date.js';
 //# sourceMappingURL=input.js.map

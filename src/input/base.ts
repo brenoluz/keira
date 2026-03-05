@@ -5,7 +5,7 @@ export default class InputBase extends View {
   name: string;
   label: Element | null;
   help: Element | null;
-  input: HTMLInputElement | null;
+  input: HTMLElement | null;
   value: unknown;
   editable: boolean;
   label_text: string | null;
@@ -65,8 +65,8 @@ export default class InputBase extends View {
   }
 
   get_value(): unknown {
-    if (this.input) {
-      this.value = this.input.value;
+    if (this.input && 'value' in this.input) {
+      this.value = (this.input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).value;
     }
     return this.value;
   }
@@ -80,8 +80,8 @@ export default class InputBase extends View {
   }
 
   focus(): void {
-    if (this.input) {
-      this.input.focus();
+    if (this.input && 'focus' in this.input) {
+      (this.input as HTMLElement).focus();
     }
   }
 
@@ -185,7 +185,7 @@ export default class InputBase extends View {
       group.append(labelEl);
     }
 
-    this.input = this.make_input(this.name);
+    this.input = this.make_input(this.name) as HTMLInputElement;
     group.append(this.input);
 
     this.error = this.make_error();
@@ -211,18 +211,8 @@ export default class InputBase extends View {
     return label;
   }
 
-  make_input(name: string): HTMLInputElement {
-    const input = ce('input', 'form-control') as unknown as HTMLInputElement;
-    input.name = name;
-
-    if (!!this.value && typeof this.value === 'string') {
-      input.value = this.value;
-    }
-
-    if (!this.editable) {
-      input.disabled = true;
-    }
-
+  make_input(_name: string): HTMLElement {
+    const input = ce('input', 'form-control') as unknown as HTMLElement;
     return input;
   }
 
