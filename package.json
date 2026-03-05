@@ -10,9 +10,65 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./src/*": {
-      "types": "./dist/src/*.d.ts",
-      "import": "./dist/src/*.js"
+    "./modal": {
+      "types": "./dist/src/modal/index.d.ts",
+      "import": "./dist/src/modal/index.js"
+    },
+    "./validator": {
+      "types": "./dist/src/validator/index.d.ts",
+      "import": "./dist/src/validator/index.js"
+    },
+    "./input": {
+      "types": "./dist/src/input.d.ts",
+      "import": "./dist/src/input.js"
+    },
+    "./controller": {
+      "types": "./dist/src/controller.d.ts",
+      "import": "./dist/src/controller.js"
+    },
+    "./view": {
+      "types": "./dist/src/view.d.ts",
+      "import": "./dist/src/view.js"
+    },
+    "./form": {
+      "types": "./dist/src/form.d.ts",
+      "import": "./dist/src/form.js"
+    },
+    "./modal/*": {
+      "types": "./dist/src/modal/*.d.ts",
+      "import": "./dist/src/modal/*.js"
+    },
+    "./validator/*": {
+      "types": "./dist/src/validator/*.d.ts",
+      "import": "./dist/src/validator/*.js"
+    },
+    "./input/*": {
+      "types": "./dist/src/input/*.d.ts",
+      "import": "./dist/src/input/*.js"
+    },
+    "./component/*": {
+      "types": "./dist/src/component/*.d.ts",
+      "import": "./dist/src/component/*.js"
+    },
+    "./event": {
+      "types": "./dist/src/event.d.ts",
+      "import": "./dist/src/event.js"
+    },
+    "./back": {
+      "types": "./dist/src/back.d.ts",
+      "import": "./dist/src/back.js"
+    },
+    "./dropdown": {
+      "types": "./dist/src/dropdown.d.ts",
+      "import": "./dist/src/dropdown.js"
+    },
+    "./tools": {
+      "types": "./dist/src/tools.d.ts",
+      "import": "./dist/src/tools.js"
+    },
+    "./code": {
+      "types": "./dist/src/code.d.ts",
+      "import": "./dist/src/code.js"
     }
   },
   "files": [
