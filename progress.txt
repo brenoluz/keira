@@ -227,6 +227,38 @@ This file tracks progress through the user stories in prd.json.
 
 ---
 
+## 2026-03-05 10:03 - US-014
+- Created comprehensive tests for all input components (45 tests total):
+  - InputBase tests (12): name, make, value, label, validators, validation, errors, focus, help
+  - InputText tests (5): creation, name, value, editable state
+  - InputSelect tests (8): options, value, onchange, display, disabled
+  - InputRadio tests (6): options, help text, value, onchange, display
+  - InputTextarea tests (6): rows, maxlength, value
+  - InputHidden tests (4): creation, type, value, display
+  - InputDate tests (4): format detection, caching, value
+- All tests use strict typing (no any)
+- Fixed InputText to properly set value and disabled state in make_input
+- All 73 tests pass
+
+**Files changed:**
+- tests/input/base.test.ts
+- tests/input/text.test.ts
+- tests/input/select.test.ts
+- tests/input/radio.test.ts
+- tests/input/textarea.test.ts
+- tests/input/hidden.test.ts
+- tests/input/date.test.ts
+- src/input/text.ts (fixed make_input to set value/disabled)
+
+**Learnings for future iterations:**
+- Input components need proper make_input implementation for value/disabled handling
+- Use querySelector for finding elements in complex inputs like Radio
+- Test both internal state and DOM state where applicable
+
+---
+
+---
+
 ---
 
 ---
