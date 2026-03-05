@@ -1,0 +1,40 @@
+import View, { type ExtendedElement } from '../view.js';
+import type ValidatorBase from '../validator/base.js';
+export default class InputBase extends View {
+    name: string;
+    label: Element | null;
+    help: Element | null;
+    input: HTMLInputElement | null;
+    value: unknown;
+    editable: boolean;
+    label_text: string | null;
+    help_text: string;
+    validators: ValidatorBase[];
+    child_elements: InputBase[];
+    child_container: Element | null;
+    error: ExtendedElement;
+    constructor(name: string);
+    get_elements(): InputBase[];
+    get_values(): Record<string, unknown>;
+    get_name(): string;
+    get_value(): unknown;
+    edit(flag: boolean): void;
+    set_label(text: string): void;
+    focus(): void;
+    get_label(): string | null;
+    display(): unknown;
+    set_value(value: unknown): Promise<void>;
+    add_validator(validator: ValidatorBase): void;
+    set_errors(errors: Array<Promise<string>>): Promise<void>;
+    clear_errors(): void;
+    is_valid(extra_context?: unknown): Promise<boolean>;
+    set_help(text: string): void;
+    make(): Promise<void>;
+    make_error(): ExtendedElement;
+    make_label(text: string): HTMLElement;
+    make_input(name: string): HTMLInputElement;
+    make_help(text: string): HTMLElement;
+    remove_children(): Promise<void>;
+    append(child: InputBase | Element): void;
+}
+//# sourceMappingURL=base.d.ts.map

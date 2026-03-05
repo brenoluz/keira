@@ -1,0 +1,480 @@
+{
+  "project": "Keira TypeScript Migration",
+  "branchName": "ralph/typescript-migration",
+  "description": "Transform Keira from a JavaScript browser-side MVC framework into a fully-typed TypeScript library with strict type checking, Vitest tests, and comprehensive documentation.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Setup TypeScript Project Configuration",
+      "description": "As a developer, I need proper TypeScript configuration so the project compiles with strict type checking.",
+      "acceptanceCriteria": [
+        "Create tsconfig.json with strict: true, noImplicitAny: true, strictNullChecks: true",
+        "Set module resolution to NodeNext for ESM compatibility",
+        "Configure output directory as dist/",
+        "Enable declaration files (.d.ts) generation",
+        "Enable source maps for debugging",
+        "Update package.json with types field pointing to declaration files",
+        "Typecheck passes with zero errors"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Completed: tsconfig.json created, package.json updated, npm run build and typecheck pass"
+    },
+    {
+      "id": "US-002",
+      "title": "Remove Webpack and Grunt Dependencies",
+      "description": "As a maintainer, I need webpack and grunt removed so the build process is simpler and faster.",
+      "acceptanceCriteria": [
+        "Delete webpack.config.js",
+        "Delete Gruntfile.js",
+        "Remove webpack, grunt, grunt-webpack from package.json devDependencies",
+        "Remove @babel/core, @babel/preset-env from devDependencies",
+        "Change build script in package.json from grunt to tsc",
+        "npm run build executes successfully with tsc",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Completed: Deleted webpack/grunt configs, removed old dependencies, build and typecheck pass"
+    },
+    {
+      "id": "US-003",
+      "title": "Convert Core MVC Classes to TypeScript",
+      "description": "As a developer, I need the core Controller, View, and Form classes typed so they provide proper IntelliSense.",
+      "acceptanceCriteria": [
+        "Convert src/controller.ts with typed error(e: unknown): void method",
+        "Convert src/view.ts with typed constructor, container: Element, and typed methods",
+        "Convert src/form.ts with typed elements: InputBase[], validators: Validator[], and typed methods",
+        "Type the global ce function with overloads for tag name, className, and attributes",
+        "Zero any types in core classes",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Completed: Converted Controller, View, Form, InputBase, ValidatorBase to TypeScript with zero any types"
+    },
+    {
+      "id": "US-004",
+      "title": "Convert Input Components to TypeScript",
+      "description": "As a developer, I need all input components typed so they enforce correct usage.",
+      "acceptanceCriteria": [
+        "Convert src/input/base.ts with typed properties name, value, validators, editable",
+        "Convert src/input/text.ts with typed make_input method",
+        "Convert src/input/select.ts with typed list array and onchange callback",
+        "Convert src/input/radio.ts with typed list array",
+        "Convert src/input/radio_button.ts with proper typing",
+        "Convert src/input/textarea.ts with typed rows and maxlength methods",
+        "Convert src/input/hidden.ts with proper typing",
+        "Convert src/input/date.ts with typed format and get_format method",
+        "Re-export all input types from src/input.ts",
+        "Zero any types in input components",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Convert Modal Components to TypeScript",
+      "description": "As a developer, I need Modal and related components typed for proper DOM manipulation.",
+      "acceptanceCriteria": [
+        "Convert src/modal.ts with typed properties and methods",
+        "Type set_title, show, hide, remove methods",
+        "Type static methods set_document and get_document",
+        "Export typed Alert class from src/modal/index.ts",
+        "Convert src/modal/alert.ts with typed message and set_message",
+        "Zero any types in modal components",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Convert Dropdown Component to TypeScript",
+      "description": "As a developer, I need Dropdown component typed for proper button and menu handling.",
+      "acceptanceCriteria": [
+        "Convert src/dropdown.ts with typed properties _button, _itens, menu, menu_show",
+        "Type set_button, set_label, toggle, show, hide methods",
+        "Type make_button and make_item methods",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Convert Event System to TypeScript",
+      "description": "As a developer, I need the Event emitter typed for type-safe event handling.",
+      "acceptanceCriteria": [
+        "Convert src/event.ts singleton class with typed listeners",
+        "Type emit and on methods",
+        "Type remove and remove_all methods",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Convert Back Navigation System to TypeScript",
+      "description": "As a developer, I need the back navigation system typed for proper callback handling.",
+      "acceptanceCriteria": [
+        "Convert src/back.ts singleton class with typed list and default properties",
+        "Type constants MENU, OVERRIDE, MODAL, DIALOG as readonly",
+        "Type add, remove, and back methods",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 8,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Convert Validator System to TypeScript",
+      "description": "As a developer, I need validators typed for proper validation contracts.",
+      "acceptanceCriteria": [
+        "Convert src/validator/base.ts abstract class with typed error_message and is_valid",
+        "Convert src/validator/not_null.ts with implemented is_valid returning Promise<boolean>",
+        "Export typed validator classes from src/validator/index.ts",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 9,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Convert Utility Modules to TypeScript",
+      "description": "As a developer, I need utility functions typed for proper return types.",
+      "acceptanceCriteria": [
+        "Convert src/tools.ts with explicit return types for makeId, ellipsisText, uuid",
+        "Convert src/code.ts with typed string constants",
+        "Create index.ts main export file with proper type re-exports",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 10,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-011",
+      "title": "Convert Loading Component to TypeScript",
+      "description": "As a developer, I need the Loading component typed for proper DOM manipulation.",
+      "acceptanceCriteria": [
+        "Convert src/component/loading.ts with typed container property",
+        "Fix bug: change this.container.container(span) to this.container.append(span)",
+        "Type make method as Promise<void>",
+        "Zero any types",
+        "Typecheck passes"
+      ],
+      "priority": 11,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-012",
+      "title": "Setup Vitest Testing Framework",
+      "description": "As a developer, I need Vitest configured so I can write and run tests.",
+      "acceptanceCriteria": [
+        "Create vitest.config.ts with jsdom environment",
+        "Install vitest, @vitest/coverage-v8, jsdom as devDependencies",
+        "Update package.json test script to vitest",
+        "Add test:coverage script running vitest --coverage",
+        "Configure TypeScript to allow test files (.test.ts)",
+        "Test command runs successfully",
+        "Typecheck passes"
+      ],
+      "priority": 12,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-013",
+      "title": "Write Tests for Core Classes",
+      "description": "As a developer, I need tests for Controller, View, and Form so changes don't break core functionality.",
+      "acceptanceCriteria": [
+        "Create tests/controller.test.ts with error handling tests",
+        "Create tests/view.test.ts with ce function and View rendering tests",
+        "Create tests/form.test.ts with element addition, validation, value tests",
+        "All tests use strict typing (no any)",
+        "Tests cover edge cases and error conditions",
+        "All tests pass with npm test",
+        "Typecheck passes"
+      ],
+      "priority": 13,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-014",
+      "title": "Write Tests for Input Components",
+      "description": "As a developer, I need tests for all input types so validation and value handling works correctly.",
+      "acceptanceCriteria": [
+        "Create tests/input/base.test.ts for base input functionality",
+        "Create tests/input/text.test.ts for text input tests",
+        "Create tests/input/select.test.ts for select option tests",
+        "Create tests/input/radio.test.ts for radio button group tests",
+        "Create tests/input/textarea.test.ts for rows/maxlength tests",
+        "Create tests/input/hidden.test.ts for hidden input tests",
+        "Create tests/input/date.test.ts for date format tests",
+        "All tests use strict typing",
+        "All tests pass",
+        "Typecheck passes"
+      ],
+      "priority": 14,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-015",
+      "title": "Write Tests for Modal and Dropdown",
+      "description": "As a developer, I need tests for UI components so modal/dialog behavior is reliable.",
+      "acceptanceCriteria": [
+        "Create tests/modal.test.ts for modal open/close/backdrop tests",
+        "Create tests/modal/alert.test.ts for alert message tests",
+        "Create tests/dropdown.test.ts for dropdown toggle/item tests",
+        "Tests mock DOM environment properly",
+        "All tests use strict typing",
+        "All tests pass",
+        "Typecheck passes"
+      ],
+      "priority": 15,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-016",
+      "title": "Write Tests for Event and Back Systems",
+      "description": "As a developer, I need tests for event emitter and back navigation so they work reliably.",
+      "acceptanceCriteria": [
+        "Create tests/event.test.ts for emit/on/remove tests",
+        "Create tests/back.test.ts for priority-based callback tests",
+        "All tests use strict typing",
+        "All tests pass",
+        "Typecheck passes"
+      ],
+      "priority": 16,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-017",
+      "title": "Write Tests for Validators",
+      "description": "As a developer, I need tests for validators so form validation is reliable.",
+      "acceptanceCriteria": [
+        "Create tests/validator/base.test.ts for base validator interface",
+        "Create tests/validator/not_null.test.ts for null/empty validation",
+        "Tests cover edge cases (empty string, null, undefined, whitespace)",
+        "All tests use strict typing",
+        "All tests pass",
+        "Typecheck passes"
+      ],
+      "priority": 17,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-018",
+      "title": "Write Tests for Utilities",
+      "description": "As a developer, I need tests for utility functions so they produce consistent results.",
+      "acceptanceCriteria": [
+        "Create tests/tools.test.ts for makeId, uuid, ellipsisText tests",
+        "Create tests/code.test.ts for code constants tests",
+        "Tests verify output types and formats",
+        "All tests use strict typing",
+        "All tests pass",
+        "Typecheck passes"
+      ],
+      "priority": 18,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-019",
+      "title": "Configure Library Package Exports",
+      "description": "As a library consumer, I need proper ESM exports so I can import Keira correctly.",
+      "acceptanceCriteria": [
+        "Add type: module to package.json for ESM",
+        "Set main: dist/index.js for ESM entry",
+        "Set types: dist/index.d.ts for TypeScript types",
+        "Add exports field with proper subpath exports",
+        "Add files field listing dist/ for npm publish",
+        "All exports resolve correctly with npm pack --dry-run",
+        "Typecheck passes"
+      ],
+      "priority": 19,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-020",
+      "title": "Create Documentation Structure",
+      "description": "As a developer using Keira, I need documentation so I can understand how to use the library.",
+      "acceptanceCriteria": [
+        "Create /docs directory",
+        "Create /docs/README.md main documentation index",
+        "Create /docs/installation.md with setup instructions",
+        "Create /docs/quickstart.md with basic examples",
+        "Create /docs/api/ directory for API reference",
+        "Typecheck passes"
+      ],
+      "priority": 20,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-021",
+      "title": "Document Core API",
+      "description": "As a developer, I need API documentation for Controller, View, and Form.",
+      "acceptanceCriteria": [
+        "Create /docs/api/controller.md with class documentation and examples",
+        "Create /docs/api/view.md with View class and ce function documentation",
+        "Create /docs/api/form.md with Form class documentation",
+        "Each doc includes import statements, usage examples, method signatures",
+        "Examples are typed TypeScript code",
+        "Typecheck passes"
+      ],
+      "priority": 21,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-022",
+      "title": "Document Input Components API",
+      "description": "As a developer, I need API documentation for all input types.",
+      "acceptanceCriteria": [
+        "Create /docs/api/inputs.md for all input types",
+        "Include usage examples for each input type",
+        "Document common methods (set_value, get_value, set_label, validators)",
+        "Examples are typed TypeScript code",
+        "Typecheck passes"
+      ],
+      "priority": 22,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-023",
+      "title": "Document Modal and Dropdown API",
+      "description": "As a developer, I need API documentation for Modal and Dropdown components.",
+      "acceptanceCriteria": [
+        "Create /docs/api/modal.md with Modal class and Alert usage",
+        "Create /docs/api/dropdown.md with Dropdown class documentation",
+        "Examples show complete usage patterns",
+        "Examples are typed TypeScript code",
+        "Typecheck passes"
+      ],
+      "priority": 23,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-024",
+      "title": "Document Event and Back System API",
+      "description": "As a developer, I need API documentation for Event and Back systems.",
+      "acceptanceCriteria": [
+        "Create /docs/api/event.md with Event emitter usage",
+        "Create /docs/api/back.md with Back navigation documentation",
+        "Examples show real-world usage scenarios",
+        "Examples are typed TypeScript code",
+        "Typecheck passes"
+      ],
+      "priority": 24,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-025",
+      "title": "Document Validator API",
+      "description": "As a developer, I need API documentation for validators.",
+      "acceptanceCriteria": [
+        "Create /docs/api/validators.md with Validator system documentation",
+        "Include examples for creating custom validators",
+        "Show validator composition and form integration",
+        "Examples are typed TypeScript code",
+        "Typecheck passes"
+      ],
+      "priority": 25,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-026",
+      "title": "Create Migration Guide",
+      "description": "As an existing Keira user, I need a migration guide so I can upgrade from JavaScript to TypeScript version.",
+      "acceptanceCriteria": [
+        "Create /docs/migration.md from v1.0.0 (JS) to v2.0.0 (TS)",
+        "Document breaking changes clearly",
+        "Document import path changes",
+        "Include before/after examples for common patterns",
+        "Add TypeScript-specific tips for new users",
+        "Typecheck passes"
+      ],
+      "priority": 26,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-027",
+      "title": "Add README with Quick Start",
+      "description": "As a new user, I need a clear README so I can quickly understand what Keira is and how to start.",
+      "acceptanceCriteria": [
+        "Create or update root README.md",
+        "Include project description and purpose",
+        "Include installation command",
+        "Include quick start code example in typed TypeScript",
+        "Link to full documentation in /docs",
+        "Add badges for npm version, tests, license",
+        "Typecheck passes"
+      ],
+      "priority": 27,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-028",
+      "title": "Verify Zero Any Types",
+      "description": "As a code quality reviewer, I need confirmation that no any types exist in the codebase.",
+      "acceptanceCriteria": [
+        "grep -r ': any' src/ returns zero results",
+        "grep -r 'as any' src/ returns zero results",
+        "grep -r '<any>' src/ returns zero results",
+        "grep -r ': any' tests/ returns zero results",
+        "Configure ESLint rule @typescript-eslint/no-explicit-any and pass",
+        "All unknown types properly typed as unknown with type guards",
+        "Typecheck passes"
+      ],
+      "priority": 28,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-029",
+      "title": "Final Build and Test Verification",
+      "description": "As a release manager, I need confirmation that build and all tests pass before release.",
+      "acceptanceCriteria": [
+        "npm run build completes successfully",
+        "dist/ directory contains all compiled .js files",
+        "dist/ directory contains all .d.ts declaration files",
+        "npm test runs all tests with zero failures",
+        "npm run test:coverage shows coverage >80%",
+        "tsc --noEmit passes with zero errors",
+        "No console errors in built output",
+        "Typecheck passes"
+      ],
+      "priority": 29,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

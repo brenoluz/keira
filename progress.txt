@@ -1,0 +1,75 @@
+# Progress Log - TypeScript Migration
+
+This file tracks progress through the user stories in prd.json.
+
+## Codebase Patterns
+- Use `allowJs: true` and `checkJs: false` during migration to allow incremental JS→TS conversion
+- TypeScript generates .d.ts declaration files alongside .js files in dist/
+- Module resolution set to NodeNext for ESM compatibility
+
+---
+
+## 2026-03-05 09:13 - US-001
+- Created tsconfig.json with strict: true, noImplicitAny: true, strictNullChecks: true
+- Set module resolution to NodeNext for ESM compatibility
+- Configured output directory as dist/
+- Enabled declaration files (.d.ts) and source maps
+- Updated package.json with types field and build script
+- Installed typescript and @types/node as devDependencies
+- Verified npm run build and typecheck pass successfully
+
+**Files changed:**
+- tsconfig.json (created)
+- package.json (updated)
+
+**Learnings for future iterations:**
+- Need to remove vitest types from tsconfig until US-012 installs Vitest
+- allowJs: true allows incremental migration from JS to TS
+
+---
+
+## 2026-03-05 09:15 - US-002
+- Deleted webpack.config.js
+- Deleted Gruntfile.js
+- Removed webpack, grunt, grunt-webpack from package.json devDependencies
+- Removed @babel/core, @babel/preset-env from devDependencies
+- Build script already changed to tsc (done in US-001)
+- Verified npm run build and typecheck pass
+
+**Files changed:**
+- webpack.config.js (deleted)
+- Gruntfile.js (deleted)
+- package.json (removed old dependencies)
+
+**Learnings for future iterations:**
+- Keep only typescript and @types/node as devDependencies for now
+- Will add vitest and related packages in US-012
+
+---
+
+## 2026-03-05 09:23 - US-003
+- Converted src/controller.ts with typed error(e: unknown): void method
+- Converted src/view.ts with ce function overloads and typed View class
+- Converted src/form.ts with typed elements: InputBase[], validators: ValidatorBase[]
+- Converted src/input/base.ts with typed properties and methods
+- Converted src/validator/base.ts with typed error_message and is_valid
+- Used .js extensions in imports for NodeNext module resolution
+- Zero any types in core classes (used unknown and proper type guards)
+- Verified typecheck and build pass
+
+**Files changed:**
+- src/controller.ts (created from controller.js)
+- src/view.ts (created from view.js)
+- src/form.ts (created from form.js)
+- src/input/base.ts (created from base.js)
+- src/validator/base.ts (created from base.js)
+- Old .js files deleted
+
+**Learnings for future iterations:**
+- ESM with NodeNext requires explicit .js extensions in imports
+- Use `as unknown as Type` for DOM element type casting when ce() returns ExtendedElement
+- ExtendedElement interface extends HTMLElement with custom methods (append, text, html)
+- Use override modifier for methods that override base class methods
+- Type-only imports (import type) help avoid circular dependencies
+
+---
