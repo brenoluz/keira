@@ -174,6 +174,31 @@ This file tracks progress through the user stories in prd.json.
 
 ---
 
+## 2026-03-05 09:53 - US-012
+- Installed vitest, @vitest/coverage-v8, jsdom, @types/jsdom as devDependencies
+- Created vitest.config.ts with jsdom environment for browser APIs
+- Created tests/tsconfig.json for test-specific TypeScript configuration
+- Updated package.json with test and test:coverage scripts (already present)
+- Verified npm test runs successfully
+- All tests use globals: true for describe, it, expect without imports
+- Verified typecheck still passes
+
+**Files changed:**
+- vitest.config.ts (created)
+- tests/tsconfig.json (created)
+- tests/controller.test.ts (placeholder test)
+- package.json (dependencies updated via npm install)
+
+**Learnings for future iterations:**
+- Use vitest globals: true to avoid importing describe/it/expect in every test
+- jsdom environment required for testing browser DOM APIs
+- Separate tsconfig for tests avoids circular dependency issues
+- Test files should be in tests/ directory with .test.ts extension
+
+---
+
+---
+
 ---
 
 ---

@@ -32,5 +32,5 @@
     "checkJs": false
   },
   "include": ["src/**/*", "index.ts", "index.js"],
-  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts", "vitest.config.ts"]
 }
