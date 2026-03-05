@@ -257,6 +257,46 @@ This file tracks progress through the user stories in prd.json.
 
 ---
 
+## 2026-03-05 10:10 - US-015 to US-018
+- **US-015**: Modal and Dropdown tests (21 tests)
+  - Modal: creation, title, render, show/hide, remove, backdrop behavior
+  - Alert: message display, OK button, removal
+  - Dropdown: button creation, items, toggle, show/hide
+
+- **US-016**: Event and Back system tests (18 tests)
+  - Event: listener registration, emit, remove, multiple listeners
+  - Back: priority callbacks, clear, override, default handling
+
+- **US-017**: Validator tests (15 tests)
+  - ValidatorBase: error message, default is_valid rejection
+  - ValidatorNotNull: null/undefined/empty validation, handles false/0 correctly
+  - Fixed ValidatorNotNull to check explicit null/undefined/'' instead of falsy
+
+- **US-018**: Utility tests (11 tests)
+  - makeId: length, uniqueness, alphanumeric characters
+  - uuid: format, uniqueness, length
+  - ellipsisText: truncation behavior
+  - code: constants existence
+
+- **Total: 147 tests passing**
+
+**Files changed:**
+- tests/modal.test.ts, tests/modal/alert.test.ts
+- tests/dropdown.test.ts
+- tests/event.test.ts, tests/back.test.ts
+- tests/validator/base.test.ts, tests/validator/not_null.test.ts
+- tests/tools.test.ts, tests/code.test.ts
+- src/validator/not_null.ts (fixed to check explicit null/undefined/'')
+
+**Learnings for future iterations:**
+- Back system uses lower numbers as higher priority (loop 0-9, first match wins)
+- ValidatorNotNull should only reject null/undefined/empty string, not falsy values like 0 or false
+- Test files in subdirectories need ../../src/ imports instead of ../src/
+
+---
+
+---
+
 ---
 
 ---
